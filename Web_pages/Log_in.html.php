@@ -1,3 +1,6 @@
+<?php
+require_once '/Users/wilbert/Desktop/ZooWeeMama/PHP/Config.php'
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,21 +19,9 @@
         <br>
         <button class= "btn btn-success mt-3" name = "Login">Login</button>
 
-
     </form>
 
 
     </body>
-
-
-
-
-
-
-<?php
-$message = "kill yourself";
-echo $message;
-
-?>
 
 </html>

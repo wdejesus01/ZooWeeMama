@@ -8,7 +8,7 @@
 <body>
 <p> <b>EMPLOYEE PAGE</b>  </p>
 <p>SIGN UP TO WORK AN EVENT</p>
-<a href="SIGN_UP.html" >
+<a href="SIGN_UP.html.php" >
         SIGN UP
    </a>
 <p>STATUS OF EMPLOYMENT</p>
