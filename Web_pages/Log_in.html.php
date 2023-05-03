@@ -1,53 +1,51 @@
-<?php
 
-include_once '../PHP/Config.php';
-?>
 <!DOCTYPE html>
-<html = en>
     <head>
         <meta charset="UTF-8">
         <title>ZooWeeMama</title>
     </head>
-    <h>ZooWeeMama</h>
+    <h1>ZooWeeMama</h1>
     <body>
     <div>
     <form action="Log_in.html.php" method="post">
-        <label for="Username"  >Username </label>
+        <label for="Username"  >Username
         <br>
         <input type = "text" name="Username" placeholder="UserName">
+        </label>
         <br>
-        <label for="password">Password</label>
+        <label for="password">Password
         <br>
         <input type="password" name = "Password" placeholder="Password">
+        </label>
         <br>
         <input type="submit" value="Log On" name="Log On">
     </form>
     </div>
     <?php
 
-    if(isset($_POST["Username"] ) && isset($_POST['Password']))
+
+    if(isset($_POST['Username']) && isset($_POST['Password'])) {
+
+        require_once '../PHP/Config.php';
+
+            $Query = 'SELECT * FROM EMPLOYEE AS E WHERE E.username = :username AND E.password= :password LIMIT 1';
+            $stmt = $PDO->prepare($Query);
+            $stmt->execute(['username' => $_POST['Username'], 'password' => $_POST['Password']]);
+            $row = $stmt->fetch();
+
+
+
+    if (empty($row)) {
+        echo 'Username and password don\'t exist, try again';
+    }
+    else
     {
-        $Query = 'SELECT 1 FROM EMPLOYEE AS E WHERE E.username = :username AND E.password= :password';
-        $Query = $PDO -> prepare($Query);
-        $Query = $Query -> execute(['username' => $_POST['Username'], 'password' => $_POST['Password']]);
-        $Query = $Query->fetch();
-
-
-
+        echo $row -> username . '<br>'. $row->password;
     }
 
-    else {
-        echo 'Name or Password does not exist';
-    }
 
     session_start();
-
-    $_SESSION['Privilege']= $Query -> permission;
-    if($_SESSION['Privilege']=2)
-    {
-        header('Location: ../Web_pages/EmployeePage.html.php');
-    }
+}
     ?>
     </body>
 
-</html>
