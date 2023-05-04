@@ -7,7 +7,9 @@
 
 </head>
 
-<h2>Hello <?php echo$_SESSION['Username'] . '<br> What would you like todo today?' ?> </h2>
+<h2>Hello <?php echo$_SESSION['User']->name . '<br> What would you like todo today?' ?> </h2>
+
+
 <div>
 
     <a href="'../PHP/Manager_Queries.php"></a>
@@ -18,6 +20,9 @@
         <br>
         <input type="submit" value ="Manage Employee's" >
         <br>
+        <br>
+        <br>
+        <input type="submit" value="Log out">
 
 
     </label>

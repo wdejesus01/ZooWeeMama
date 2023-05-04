@@ -39,7 +39,7 @@
         echo 'Username does not exist<br>';
     }
 
-    $Query= 'SELECT E.password,E.permission  FROM EMPLOYEE AS E WHERE E.password = :password LIMIT 1';
+    $Query= 'SELECT *  FROM EMPLOYEE AS E WHERE E.password = :password LIMIT 1';
     $stmt= $PDO -> prepare($Query);
     $stmt->execute(['password'=>$_POST['Password']]);
     $password = $stmt -> fetch();
@@ -57,7 +57,7 @@
         echo $username -> username . '<br>' . $password -> password;
 
         session_start();
-        $_SESSION['Credentials'] = $password -> permission;
+        $_SESSION['User']= $password;
         $PDO = NULL;
 
         switch ($_SESSION['Credentials']) {
