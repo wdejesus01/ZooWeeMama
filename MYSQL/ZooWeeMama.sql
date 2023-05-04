@@ -151,3 +151,9 @@ CREATE TABLE FOUND_IN
     FOREIGN KEY (s_family) REFERENCES SPECIES (family),
     FOREIGN KEY (ex_name) REFERENCES EXHIBIT (name)
 );
+
+ALTER TABLE ZooWeeMama.EMPLOYEE
+DROP COLUMN permission,
+    ADD COLUMN permission int check ( permission =1 or permission=2  );
+
+
