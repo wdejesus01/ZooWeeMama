@@ -48,4 +48,3 @@ $data=(['Store_Name'=>$_POST['Store_Name'],
     'Item_ID'=>$_POST['Item_ID']]);
 
 $statement_execute=$stmt->execute($data);
-echo 'inserted nicely';}
