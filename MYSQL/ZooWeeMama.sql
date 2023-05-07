@@ -1,4 +1,4 @@
-DROP DATABASE ZooWeeMama;
+DROP DATABASE IF EXISTS ZooWeeMama;
 create database ZooWeeMama;
 use ZooWeeMama;
 CREATE TABLE ORDERS
@@ -30,10 +30,13 @@ CREATE TABLE BUILDING
 
 CREATE TABLE DEPARTMENT
 (
-    ID     char(10) PRIMARY KEY,
-    name   varchar(255),
-    b_name varchar(255),
+    ID        char(10) PRIMARY KEY,
+    name      varchar(255),
+    b_name    varchar(255),
+    Parent_ID char(10),
+    FOREIGN KEY (parent_ID) REFERENCES DEPARTMENT (ID),
     FOREIGN KEY (b_name) REFERENCES BUILDING (name)
+
 );
 
 CREATE TABLE EMPLOYEE
@@ -44,15 +47,16 @@ CREATE TABLE EMPLOYEE
     start_date DATE,
     username   varchar(255),
     password   varchar(255),
-    permission varchar(255),
+    permission int check ( permission = 1 OR permission = 2 ),
     d_no       char(10),
     FOREIGN KEY (d_no) REFERENCES DEPARTMENT (ID)
 );
 
-
 ALTER TABLE DEPARTMENT
-    ADD e_id char(10),
-    ADD CONSTRAINT FOREIGN KEY (e_id) references EMPLOYEE (ID);
+    ADD COLUMN e_ID char(10),
+    ADD CONSTRAINT FOREIGN KEY (e_ID) REFERENCES EMPLOYEE (ID);
+
+
 
 CREATE TABLE EVENT
 (
@@ -61,7 +65,9 @@ CREATE TABLE EVENT
     cost     float,
     capacity int,
     b_name   varchar(255),
+    Dep_ID   char(10),
     primary key (name, time),
+    FOREIGN KEY (Dep_ID) REFERENCES DEPARTMENT (ID),
     FOREIGN KEY (b_name) REFERENCES BUILDING (name)
 );
 
@@ -151,9 +157,3 @@ CREATE TABLE FOUND_IN
     FOREIGN KEY (s_family) REFERENCES SPECIES (family),
     FOREIGN KEY (ex_name) REFERENCES EXHIBIT (name)
 );
-
-ALTER TABLE ZooWeeMama.EMPLOYEE
-DROP COLUMN permission,
-    ADD COLUMN permission int check ( permission =1 or permission=2  );
-
-
