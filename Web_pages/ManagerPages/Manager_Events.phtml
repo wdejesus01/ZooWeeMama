@@ -1,0 +1,134 @@
+<?php
+session_start();
+require_once '../../PHP/Check_Session.php';
+?>
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Events</title>
+
+</head>
+
+<body>
+
+<div>
+    <h2>Here are all the events and options for events:</h2>
+    <div>
+        <?php
+
+        require_once '../../PHP/config.php';
+        ?>
+        <div>
+            <h1>Add a Event</h1>
+        </div>
+        <div>
+            <form action="Manager_Events.phtml" method="post">
+                <label for="Name">Name:
+                    <input type="text" name="Name"
+                </label>
+                <br>
+                <label for="Time"> Time:
+                    <input type="date" name="Time">
+                </label>
+                <br>
+                <label for="Cost">Cost:
+                    <input type="number" name="Cost">
+                </label>
+                <br>
+                <label for="Capacity">Capacity:
+                    <input type="number" name="Capacity">
+                </label>
+                <br>
+                <label for="Building:">Building:
+                    <select name="Building"
+                            id="Building">
+                        <?php
+                        $Query = 'Select B.name FROM BUILDING AS B;';
+                        $stmt = $PDO->prepare($Query);
+                        $stmt->execute();
+                        while ($row = $stmt->fetch()) {
+                            echo '<option value = "' . $row->name . '">' . $row->name . '</option>';
+
+                        }
+                        ?>
+                    </select>
+                </label>
+                <br>
+                <label for="Parent"> Parent_ID:
+                    <input type="text" name="Parent_ID">
+                </label>
+                <br>
+                <input type='submit' value="Add Event">
+
+            </form>
+
+            <?php
+            if (isset($_POST['Name']) &&
+                isset($_POST['Time']) &&
+                isset($_POST['Cost']) &&
+                isset($_POST['Building']) &&
+                isset($_POST['Parent_ID'])) {
+                echo $_POST['Name'] . '<br>';
+                $Query = 'INSERT INTO EVENT VALUES ' .
+                    "(:name, :Time, :Cost, :capacity,:Building, :parent_ID);";
+                $stmt = $PDO->prepare($Query);
+                $stmt->execute(['name' => $_POST['Name'],'capacity' => $_POST['Capacity'],
+                    'Time' => $_POST['Time'], 'Cost' => $_POST['Cost'],
+                    'Building' => $_POST['Building'], 'parent_ID' => $_POST['Parent_ID']]);
+            }
+            ?>
+
+        </div>
+        <br>
+        <div>
+            <?php
+            $Query = 'CALL Get_EVENTS( :dep_id )';
+            $stmt = $PDO->prepare($Query);
+            $stmt->execute(['dep_id' => $_SESSION['User']->d_no]);
+            foreach ($stmt->fetchall() as $row)
+            {
+                echo 'Event Name: ' . htmlspecialchars($row->name) . '<br>';
+                echo 'Event time: ' . htmlspecialchars($row->TIME) . '<br>';
+                echo 'Event cost: ' . htmlspecialchars($row->COST) . '<br>';
+                echo 'Event capacity: ' . htmlspecialchars($row->CAPACITY) . '<br>';
+                echo 'Event location: ' . htmlspecialchars($row->B_NAME) . '<br>';
+                echo 'Event Department: ' . htmlspecialchars($row->DEP_ID) . '<br>';
+                echo '<form action = "Manager_Events.phtml" method = "post">
+                <input type="submit" name = "Delete" value="Delete Event">
+                <input type="hidden" name = "name" value="'.$row->name . '">
+                <input type ="hidden" name="time" value = "'. $row->TIME . '">
+                </form>';
+
+                $stmt -> closeCursor();
+
+
+            }
+
+            if (isset($_POST['Delete'])) {
+                echo $_POST['name'] . '<br>' . $_POST['time'];
+                $Query = 'DELETE FROM EVENT where name = :name AND time = :time ';
+                $stmt = $PDO->prepare($Query);
+                $stmt->execute(['name' => $_POST['name'], 'time' => $_POST['time']]);
+                header('Location: Manager_Events.phtml');
+            }
+
+            ?>
+        </div>
+        <br><br>
+        <form action="Manager_Events.phtml" method="post">
+            <input type="submit" name="Go_Back" value="Go Back">
+        </form>
+        <?php
+        if (isset($_POST['Go_Back'])) {
+            header('Location: Manager.php');
+            exit();
+        }
+
+        ?>
+    </div>
+
+
+
+</body>
+

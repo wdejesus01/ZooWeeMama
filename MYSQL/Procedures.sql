@@ -7,8 +7,8 @@ BEGIN
                                                                 b_name,
                                                                 parent_id
                                                          from ZooWeeMama.DEPARTMENT
-                                                         where Parent_ID = dept
-                                                            or Parent_ID IS NULL
+                                                         where ID = dept
+
 
                                                          UNION ALL
 

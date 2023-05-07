@@ -15,7 +15,7 @@ INSERT INTO ZooWeeMama.EMPLOYEE(ID, name, position, start_date, username, passwo
 VALUES ('0000000000', 'Harmabe Jr', 'CEO', '2019-11-11', 'TheOneandOnly', 'password', 2, '1234567890'),
        ('1234567890', 'Harambe Sr', 'Administrator', '2019-12-12', 'yeeyee', 'NothingHere', 2, '7777777777');
 
-INSERT INTO ZooWeeMama.EVENT(name, time, cost, capacity, b_name, Dep_ID)
+INSERT INTO ZooWeeMama.EVENT
 VALUES ('Harambe Memorial', '2019-12-12', '54', '4', 'Headquarters', '7777777777');
 
 
