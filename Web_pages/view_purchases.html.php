@@ -33,6 +33,9 @@ $d=$PDO->query($query);
     }
     ?>
 </table>
-
+<form action="Create_Purchase.html.php">
+    <button type="submit" class="button">GO BACK</button>
+</form>
+    
 </body>
 </html>
