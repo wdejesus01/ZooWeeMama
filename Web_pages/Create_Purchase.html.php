@@ -42,7 +42,7 @@
 </body>
 </html>
 <?php
-require_once 'testing.php';
+require_once 'Config.php';
 if(isset($_POST['Store_Name'])
     &&isset($_POST['Item_ID'])
     &&isset($_POST['Order_ID'])
