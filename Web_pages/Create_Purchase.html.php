@@ -19,11 +19,6 @@
       <input type="text" name="Item_ID"
     </label>
       <br>
-    <label for="Order_ID">Order_ID
-      <br>
-      <input type="text" name="Order_ID"
-    </label>
-      <br>
     <label for="Visitor_ID">Visitor_ID
       <br>
       <input type="text" name="Visitor_ID"
@@ -33,7 +28,7 @@
   </form>
   <br><br>
 
-  <form action="view_purchases.html">
+  <form action="view_purchases.html.php">
     <button type="submit" class="button">VIEW PURCHASES</button>
   </form>
 </div>
@@ -45,11 +40,10 @@
 require_once 'Config.php';
 if(isset($_POST['Store_Name'])
     &&isset($_POST['Item_ID'])
-    &&isset($_POST['Order_ID'])
     &&isset($_POST['Visitor_ID'])){
   $Query='INSERT INTO PURCHASES VALUES ' .
-      "(:Store_Name,:Item_ID,:Order_ID,:Visitor_ID);";
+      "(:Store_Name,:Item_ID,:Visitor_ID);";
   $stmt=$PDO->prepare($Query);
-  $stmt->execute(['Store_Name'=>$_POST['Store_Name'],'Item_ID'=>$_POST['Item_ID']]);
+  $stmt->execute(['Store_Name'=>$_POST['Store_Name'],'Item_ID'=>$_POST['Item_ID'],'Visitor_ID'=>$_POST['Visitor_ID']]);
 }
 ?>
