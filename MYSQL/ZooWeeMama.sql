@@ -119,8 +119,8 @@ CREATE TABLE WORKS_EXHIBIT
 
 CREATE TABLE WORKS_EVENT
 (
-    ev_name varchar(255),
-    e_id    char(10),
+    Event_Name varchar(255),
+    Employee_ID    char(10),
     primary key (ev_name, e_id),
     foreign key (ev_name) REFERENCES EVENT (name),
     foreign key (e_id) REFERENCES EMPLOYEE (ID)
