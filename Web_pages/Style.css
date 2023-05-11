@@ -4,3 +4,10 @@ h1 {
 u1,l1,l2,l3,p {
     text-align: center;
 }
+
+.center
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -30,7 +30,7 @@
     </form>
     <br><br>
     <?php
-    require_once 'Config.php';
+    require_once '../PHP/Config.php';
     $query="Select * from EVENT";
     $d=$PDO->query($query);
     ?>
@@ -49,12 +49,12 @@
         {
             ?>
             <tr>
-                <td><?php echo $data['name'] ?></td>
-                <td><?php echo $data['time'] ?></td>
-                <td><?php echo $data['cost'] ?></td>
-                <td><?php echo $data['capacity'] ?></td>
-                <td><?php echo $data['b_name'] ?></td>
-                <td><?php echo $data['Dep_ID'] ?></td>
+                <td><?php echo $data->name ?></td>
+                <td><?php echo $data-> time  ?></td>
+                <td><?php echo $data-> cost ?></td>
+                <td><?php echo $data-> capacity ?></td>
+                <td><?php echo $data-> b_name ?></td>
+                <td><?php echo $data-> Dep_ID ?></td>
             </tr>
             <?php
         }
@@ -62,7 +62,7 @@
     </table>
     <br>
     <?php
-    require_once 'Config.php';
+    require_once '../PHP/Config.php';
     if(isset($_POST['Event_Name'])
         &&isset($_POST['Employee_ID'])){
         $Query2='INSERT INTO WORKS_EVENT VALUES ' .

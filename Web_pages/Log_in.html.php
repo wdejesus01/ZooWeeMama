@@ -4,7 +4,7 @@
     <title>ZooWeeMama</title>
 </head>
 <h1>ZooWeeMama</h1>
-<body>
+<for>
 <div>
     <form action="Log_in.html.php" method="post">
         <label for="Username">Username
@@ -27,25 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         require_once '../PHP/Config.php';
 
-        $Query = 'SELECT E.username FROM EMPLOYEE AS E WHERE E.username = :username  LIMIT 1';
+        $Query = 'SELECT *  FROM EMPLOYEE AS E WHERE E.password = :password AND E.username = :username LIMIT 1';
         $stmt = $PDO->prepare($Query);
-        $stmt->execute(['username' => $_POST['Username']]);
-        $username = $stmt->fetch();
-
-
-        if (empty($username)) {
-            echo 'Username does not exist<br>';
-        }
-
-        $Query = 'SELECT *  FROM EMPLOYEE AS E WHERE E.password = :password LIMIT 1';
-        $stmt = $PDO->prepare($Query);
-        $stmt->execute(['password' => $_POST['Password']]);
+        $stmt->execute(['password' => $_POST['Password'], 'username' => $_POST['Username']]);
         $password = $stmt->fetch();
 
         if (empty($password)) {
-            echo 'Password does not exist<br>';
-        } else {
-            echo $username->username . '<br>' . $password->password;
+            echo 'Password or username does not exist<br>';
+        }
+        else {
 
             session_start();
             $_SESSION['User'] = $password;
@@ -67,5 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<form action = "Log_in.html.php" method = post>
+<input type ="submit" name = Go_Back value = "Go Back">
+</form>
+
+    <?php
+    if(isset($_POST['Go_Back']))
+    {
+        header('Location: Customers.html') ;
+    }
+    ?>
 </body>
 

@@ -37,7 +37,7 @@
 </body>
 </html>
 <?php
-require_once 'Config.php';
+require_once '../PHP/Config.php';
 if(isset($_POST['Store_Name'])
     &&isset($_POST['Item_ID'])
     &&isset($_POST['Visitor_ID'])){

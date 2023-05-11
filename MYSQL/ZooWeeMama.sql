@@ -28,7 +28,6 @@ CREATE TABLE DEPARTMENT
     name      varchar(255),
     b_name    varchar(255),
     Parent_ID char(10),
-
     FOREIGN KEY (parent_ID) REFERENCES DEPARTMENT (ID),
     FOREIGN KEY (b_name) REFERENCES BUILDING (name)
 
@@ -46,6 +45,10 @@ CREATE TABLE EMPLOYEE
     d_no       char(10),
     FOREIGN KEY (d_no) REFERENCES DEPARTMENT (ID)
 );
+
+ALTER TABLE DEPARTMENT
+ADD COLUMN e_ID char(10),
+    ADD FOREIGN KEY (e_ID) REFERENCES EMPLOYEE(ID);
 
 CREATE TABLE EVENT
 (

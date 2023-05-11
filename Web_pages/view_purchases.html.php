@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-require_once 'Config.php';
+require_once '../PHP/Config.php';
 $query="Select * from PURCHASES";
 $d=$PDO->query($query);
 ?>
