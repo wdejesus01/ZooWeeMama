@@ -34,6 +34,7 @@ CREATE TABLE DEPARTMENT
     name      varchar(255),
     b_name    varchar(255),
     Parent_ID char(10),
+
     FOREIGN KEY (parent_ID) REFERENCES DEPARTMENT (ID),
     FOREIGN KEY (b_name) REFERENCES BUILDING (name)
 

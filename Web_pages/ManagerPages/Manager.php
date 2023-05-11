@@ -12,6 +12,7 @@ require_once '../../PHP/Check_Session.php'
 <h2>Hello <?php echo $_SESSION['User']->name . '<br> What would you like todo today?' ?> </h2>
 
 
+
 <div>
 
 
