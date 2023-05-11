@@ -3,48 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Purchase</title>
-    <h1>Create Purchase</h1>
+  <h1>Create Purchase</h1>
 </head>
 
 <body>
 <div>
-    <form action="Create_Purchase.html" method="post">
-        <label for="Store_Name">Store_Name
-            <br>
-            <input type="text" name="Store_Name" placeholder="Store_Name">
-        </label>
-        <br>
-        <label for="Item_ID">Item_ID
-            <br>
-            <input type="text" name="Item_ID" placeholder="Item_ID">
-        </label>
-        <br>
-        <label for="Order_ID">Order_ID
-            <br>
-            <input type="text" name="Order_ID" placeholder="Order_ID">
-        </label>
-        <br>
-        <label for="Visitor_ID">Visitor_ID
-            <br>
-            <input type="text" name="Visitor_ID" placeholder="Visitor_ID">
-        </label>
-        <br>
-        <input type="submit" value="Create Purchase" name="Create Purchase">
+  <form action="Create_Purchase.html.php" method="post">
+    <label for="Store_Name">Store_Name
+      <br>
+      <input type="text" name="Store_Name"
+    </label>
+      <br>
+    <label for="Item_ID">Item_ID
+      <br>
+      <input type="text" name="Item_ID"
+    </label>
+      <br>
+    <label for="Visitor_ID">Visitor_ID
+      <br>
+      <input type="text" name="Visitor_ID"
+    </label>
+      <br>
+    <input type="submit" value="Create Purchase" name="Create Purchase">
+  </form>
+  <br><br>
 
-    </form>
+  <form action="view_purchases.html.php">
+    <button type="submit" class="button">VIEW PURCHASES</button>
+  </form>
 </div>
 
 
 </body>
 </html>
 <?php
-
-if (isset($_POST['Store_Name']) && isset($_POST['Item_ID'])) {
-    require_once 'testing.php';
-
-    $Query = 'INSERT INTO PURCHASES(Store_Name,Item_ID)VALUES(:Store_Name,:Item_ID)';
-    $stmt = $conn->prepare($Query);
-    $data = (['Store_Name' => $_POST['Store_Name'],
-        'Item_ID' => $_POST['Item_ID']]);
-
-    $statement_execute = $stmt->execute($data);
+require_once 'Config.php';
+if(isset($_POST['Store_Name'])
+    &&isset($_POST['Item_ID'])
+    &&isset($_POST['Visitor_ID'])){
+  $Query='INSERT INTO PURCHASES VALUES ' .
+      "(:Store_Name,:Item_ID,:Visitor_ID);";
+  $stmt=$PDO->prepare($Query);
+  $stmt->execute(['Store_Name'=>$_POST['Store_Name'],'Item_ID'=>$_POST['Item_ID'],'Visitor_ID'=>$_POST['Visitor_ID']]);
+}
+?>

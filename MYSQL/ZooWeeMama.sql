@@ -1,12 +1,6 @@
 DROP DATABASE IF EXISTS ZooWeeMama;
 create database ZooWeeMama;
 use ZooWeeMama;
-CREATE TABLE ORDERS
-(
-    ID       CHAR(10),
-    ord_date date,
-    PRIMARY KEY (ID)
-);
 
 CREATE TABLE VISITOR
 (
@@ -52,12 +46,6 @@ CREATE TABLE EMPLOYEE
     d_no       char(10),
     FOREIGN KEY (d_no) REFERENCES DEPARTMENT (ID)
 );
-
-ALTER TABLE DEPARTMENT
-    ADD COLUMN e_ID char(10),
-    ADD CONSTRAINT FOREIGN KEY (e_ID) REFERENCES EMPLOYEE (ID);
-
-
 
 CREATE TABLE EVENT
 (
@@ -120,12 +108,11 @@ CREATE TABLE WORKS_EXHIBIT
 
 CREATE TABLE WORKS_EVENT
 (
-    ev_name varchar(255),
-    ev_time date,
-    e_id    char(10),
-    primary key (ev_name, ev_time, e_id),
-    foreign key (ev_name, ev_time) REFERENCES EVENT (name, time),
-    foreign key (e_id) REFERENCES EMPLOYEE (ID)
+    Event_Name varchar(255),
+    Employee_ID    char(10),
+    primary key (Event_Name, Employee_ID),
+    foreign key (Event_Name) REFERENCES EVENT (name),
+    foreign key (Employee_ID) REFERENCES EMPLOYEE (ID)
 );
 
 CREATE TABLE WORKS_STORE
@@ -146,7 +133,6 @@ CREATE TABLE PURCHASES
     primary key (s_name, i_id, ord_id, v_id),
     FOREIGN KEY (s_name) REFERENCES STORE (name),
     FOREIGN KEY (i_id) REFERENCES ITEM (ID),
-    FOREIGN KEY (ord_id) REFERENCES ORDERS (ID),
     FOREIGN KEY (v_id) REFERENCES VISITOR (ID)
 );
 
