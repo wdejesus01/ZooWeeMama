@@ -120,10 +120,9 @@ CREATE TABLE WORKS_EXHIBIT
 CREATE TABLE WORKS_EVENT
 (
     ev_name varchar(255),
-    ev_time date,
     e_id    char(10),
-    primary key (ev_name, ev_time, e_id),
-    foreign key (ev_name, ev_time) REFERENCES EVENT (name, time),
+    primary key (ev_name, e_id),
+    foreign key (ev_name) REFERENCES EVENT (name),
     foreign key (e_id) REFERENCES EMPLOYEE (ID)
 );
 
