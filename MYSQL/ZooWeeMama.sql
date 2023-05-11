@@ -121,9 +121,9 @@ CREATE TABLE WORKS_EVENT
 (
     Event_Name varchar(255),
     Employee_ID    char(10),
-    primary key (ev_name, e_id),
-    foreign key (ev_name) REFERENCES EVENT (name),
-    foreign key (e_id) REFERENCES EMPLOYEE (ID)
+    primary key (Event_Name, Employee_ID),
+    foreign key (Event_Name) REFERENCES EVENT (name),
+    foreign key (Employee_ID) REFERENCES EMPLOYEE (ID)
 );
 
 CREATE TABLE WORKS_STORE
