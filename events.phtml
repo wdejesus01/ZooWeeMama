@@ -41,7 +41,7 @@
 require_once '../PHP/Config.php';
 
 if(ISSET($_POST['display'])){
-    $sql = "SELECT * FROM STORE";
+    $sql = "SELECT * FROM EVENT";
     $query = $PDO->prepare($sql);
     $query->execute();
 
