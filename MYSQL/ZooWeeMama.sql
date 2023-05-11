@@ -1,12 +1,6 @@
 DROP DATABASE IF EXISTS ZooWeeMama;
 create database ZooWeeMama;
 use ZooWeeMama;
-CREATE TABLE ORDERS
-(
-    ID       CHAR(10),
-    ord_date date,
-    PRIMARY KEY (ID)
-);
 
 CREATE TABLE VISITOR
 (
@@ -138,7 +132,6 @@ CREATE TABLE PURCHASES
     primary key (s_name, i_id, ord_id, v_id),
     FOREIGN KEY (s_name) REFERENCES STORE (name),
     FOREIGN KEY (i_id) REFERENCES ITEM (ID),
-    FOREIGN KEY (ord_id) REFERENCES ORDERS (ID),
     FOREIGN KEY (v_id) REFERENCES VISITOR (ID)
 );
 
