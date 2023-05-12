@@ -54,9 +54,7 @@ insert into STORE values('gift_shop','gifts','congo');
 
 insert into ITEM values('5555555555',23,1.99,'gift_shop');
 
-DROP TABLE PURCHASES;
 
-CREATE TABLE PURCHASES(s_name varchar(255),i_id char(10),v_id char(10), primary key(s_name,i_id,v_id),FOREIGN KEY(s_name) REFERENCES STORE(name),FOREIGN KEY(v_id) REFERENCES VISITOR(ID));
 
 
 

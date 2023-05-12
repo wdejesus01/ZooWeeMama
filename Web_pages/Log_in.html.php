@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php
     if(isset($_POST['Go_Back']))
     {
-        header('Location: Customers.html') ;
+        header('Location: Customers/index.php') ;
     }
     ?>
 </body>

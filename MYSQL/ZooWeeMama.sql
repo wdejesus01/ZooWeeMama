@@ -126,14 +126,13 @@ CREATE TABLE WORKS_STORE
     FOREIGN KEY (s_name) REFERENCES STORE (name),
     FOREIGN KEY (e_id) REFERENCES EMPLOYEE (ID)
 );
-
+CREATE TABLE PURCHASES(s_name varchar(255),i_id char(10),v_id char(10), primary key(s_name,i_id,v_id),FOREIGN KEY(s_name) REFERENCES STORE(name),FOREIGN KEY(v_id) REFERENCES VISITOR(ID));
 CREATE TABLE PURCHASES
 (
     s_name varchar(255),
     i_id   char(10),
-    ord_id char(10),
     v_id   char(10),
-    primary key (s_name, i_id, ord_id, v_id),
+    primary key (s_name, i_id, v_id),
     FOREIGN KEY (s_name) REFERENCES STORE (name),
     FOREIGN KEY (i_id) REFERENCES ITEM (ID),
     FOREIGN KEY (v_id) REFERENCES VISITOR (ID)

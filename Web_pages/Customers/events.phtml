@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View our Exhibits</title>
+    <title>View our Events</title>
 </head>
-<h1>Exhibits</h1>
+<h1>Events</h1>
 
 <body>
 
@@ -12,34 +12,37 @@
 </nav>
 <div class="col-md-3"></div>
 <div class="col-md-6 well">
-    <h3 class="text-primary">Exhibits in ZooWeeMama</h3>
+    <h3 class="text-primary">Events in ZooWeeMama</h3>
     <hr style="border-top:1px dotted #ccc;"/>
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <form method="POST" action="">
-            <button class="btn btn-primary" name="display">Display Exhibits</button>
+            <button class="btn btn-primary" name="display">Display Events</button>
         </form>
         <br /><br />
         <table class="table table-bordered">
             <thead class="alert-info">
             <tr>
                 <th>name</th>
-                <th>biome</th>
+                <th>time</th>
+                <th>cost</th>
                 <th>b_name</th>
+                <th>Dep_ID</th>
             </tr>
             </thead>
             <tbody style="background-color:#fff;">
-            <?php include'../PHP/Config.php'?>
+            <?php require_once '../../PHP/Config.php' ?>
+
+
             </tbody>
         </table>
     </div>
 </div>
 
 <?php
-require_once '../PHP/Config.php';
 
 if(ISSET($_POST['display'])){
-    $sql = "SELECT * FROM EXHIBIT";
+    $sql = "SELECT * FROM EVENT";
     $query = $PDO->prepare($sql);
     $query->execute();
 
@@ -48,8 +51,11 @@ if(ISSET($_POST['display'])){
 
         <tr>
             <td><?php echo $fetch->name?></td>
-            <td><?php echo $fetch->biome?></td>
+            <td><?php echo $fetch->time?></td>
+            <td><?php echo $fetch->cost?></td>
+            <td><?php echo $fetch->capacity?></td>
             <td><?php echo $fetch->b_name?></td>
+            <td><?php echo $fetch->Dep_ID?></td>
         </tr>
 
         <?php
